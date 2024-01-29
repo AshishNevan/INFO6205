@@ -89,7 +89,7 @@ public class RandomWalkTest {
 
     @Test
     public void testRandomWalkAssignment1() {
-        int[] testM = new int[]{0,1,12,121,255,1000};
+        int[] testM = new int[]{0,1,12,25,105,255};
         int n = 10;
         for (int j : testM) {
             double meanDistance = RandomWalk.randomWalkMulti(j, n);
