@@ -162,7 +162,7 @@ public class ThreeSumTest {
         List<ThreeSum> listOfQuadrithmic = new ArrayList<>();
         List<ThreeSum> listOfCubic = new ArrayList<>();
 
-        for (int i=1000;i<=5000;i*=2) {
+        for (int i=250;i<=5000;i*=2) {
             Supplier<int[]> intsSupplier = new Source(i, 1000).intsSupplier(10);
             int[] ints = intsSupplier.get();
             listOfQuadraticCalipers.add(new ThreeSumQuadraticWithCalipers(ints));
@@ -175,7 +175,7 @@ public class ThreeSumTest {
         System.out.printf("| %-30s | %10s |%10s|\n", "Algorithm", "input size", "Time in ms");
         System.out.printf("----------------------------------------------------------%n");
         String algoName = "Quadratic with Calipers";
-        int count = 1000;
+        int count = 250;
         for (ThreeSum target: listOfQuadraticCalipers) {
             try (Stopwatch sw = new Stopwatch()) {
                 target.getTriples();
@@ -186,7 +186,7 @@ public class ThreeSumTest {
 
         System.out.printf("----------------------------------------------------------%n");
         algoName = "Quadratic";
-        count = 1000;
+        count = 250;
         for (ThreeSum target: listOfQuadratic) {
             try (Stopwatch sw = new Stopwatch()) {
                 target.getTriples();
@@ -197,7 +197,7 @@ public class ThreeSumTest {
 
         System.out.printf("----------------------------------------------------------%n");
         algoName = "Quadrithmic";
-        count = 1000;
+        count = 250;
         for (ThreeSum target: listOfQuadrithmic) {
             try (Stopwatch sw = new Stopwatch()) {
                 target.getTriples();
@@ -208,7 +208,7 @@ public class ThreeSumTest {
 
         System.out.printf("----------------------------------------------------------%n");
         algoName = "Cubic";
-        count = 1000;
+        count = 250;
         for (ThreeSum target: listOfCubic) {
             try (Stopwatch sw = new Stopwatch()) {
                 target.getTriples();
