@@ -225,7 +225,7 @@ public class Timer {
      * @return the corresponding number of milliseconds.
      */
     private static double toMillisecs(long ticks) {
-        return (double) ticks * 1e-6;
+        return (double) ticks / 1e+6;
     }
 
     final static LazyLogger logger = new LazyLogger(Timer.class);

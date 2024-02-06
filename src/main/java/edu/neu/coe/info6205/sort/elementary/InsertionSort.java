@@ -65,7 +65,7 @@ public class InsertionSort<X extends Comparable<X>> extends SortWithHelper<X> {
         final Helper<X> helper = getHelper();
         if (getHelper().instrumented()) {
             for (int i = from; i < to; i++) {
-                for (int j = i; j > 0; j--){
+                for (int j = i; j > from; j--){
                     if (!helper.swapStableConditional(xs, j)) {
                         break;
                     }
