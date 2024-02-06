@@ -2,6 +2,7 @@ package edu.neu.coe.info6205.sort.elementary;
 
 import edu.neu.coe.info6205.util.Benchmark_Timer;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -10,9 +11,9 @@ import java.util.function.Supplier;
 public class InsertionSortBenchmark {
     public static void main(String[] args) throws Exception {
         int nRuns = 100;
-        int[] arrayOfN = new int[]{100,200,400,800,1600};
+        int[] arrayOfN = new int[]{100000,200000,400000,800000,1600000};
 
-        Consumer<Integer[]> InsertionSort = (Integer[] xs) -> {new InsertionSort<Integer>().sort(xs);};
+        Consumer<Integer[]> InsertionSort = (Integer[] xs) -> new InsertionSort<Integer>().sort(xs);
 
         for(int n: arrayOfN) {
             System.out.println("N: "+n);
@@ -35,33 +36,27 @@ public class InsertionSortBenchmark {
         }
     }
 
-    public static Function<Integer, Supplier<Integer[]>> createRandomSupplier = (Integer n) -> {
-        return () -> {
-            Integer[] xs = new Integer[n];
-            Random random = new Random(0L);
-            for (int i = 0 ;i < n; i++) {
-                xs[i] = random.nextInt(10000);
-            }
-            return xs;
-        };
+    public static Function<Integer, Supplier<Integer[]>> createRandomSupplier = (Integer n) -> () -> {
+        Integer[] xs = new Integer[n];
+        Random random = new Random(0L);
+        for (int i = 0 ;i < n; i++) {
+            xs[i] = random.nextInt(10000);
+        }
+        return xs;
     };
 
-    public static Function<Integer, Supplier<Integer[]>> createSortedSupplier = (Integer n) -> {
-        return () -> {
-            Integer[] xs = new Integer[n];
-            for (int i = 0 ;i < n; i++) {
-                xs[i] = i;
-            }
-            return xs;
-        };
+    public static Function<Integer, Supplier<Integer[]>> createSortedSupplier = (Integer n) -> () -> {
+        Integer[] xs = new Integer[n];
+        for (int i = 0 ;i < n; i++) {
+            xs[i] = i;
+        }
+        return xs;
     };
 
-    public static Function<Integer, Supplier<Integer[]>> createReverseSortedSupplier = (Integer n) -> {
-        return () -> {
-            Integer[] xs = new Integer[n];
-            for (int i = 0 ;i < n; i++) xs[n - 1 - i] = i;
-            return xs;
-        };
+    public static Function<Integer, Supplier<Integer[]>> createReverseSortedSupplier = (Integer n) -> () -> {
+        Integer[] xs = new Integer[n];
+        for (int i = 0 ;i < n; i++) xs[n - 1 - i] = i;
+        return xs;
     };
 
     public static Function<Integer, Supplier<Integer[]>> createPartiallySortedSupplier = (Integer n) -> () -> {
@@ -77,10 +72,7 @@ public class InsertionSortBenchmark {
     };
 
     private static Integer[] apply(Integer[] xs) {
-        int m = 0;
-        for (Integer i : xs) {
-            m = i;
-        }
+        Arrays.fill(xs, 0);
         return xs;
     }
 }
